@@ -25,7 +25,8 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app color="white">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
+      <img src="@/assets/img/logo.svg" alt="Logo" width="200" height="50">
     </v-app-bar>
     <v-main class="contenedor_login">
       <v-container>
@@ -34,7 +35,7 @@
     </v-main>
     <v-footer :absolute="!fixed" app color="white">
       <span class="text-primary">
-        Team-Vue-9-Comfeco &copy; {{ new Date().getFullYear() }}
+       Copyright &copy; {{ new Date().getFullYear() }} Team-Vue-9-Comfeco
       </span>
     </v-footer>
   </v-app>
