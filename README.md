@@ -12,7 +12,7 @@ Aqui se desarrollara y almacenara el proyecto para participar en el evento de Co
 * Jorge Luis Hernández (j17hernandez)
 * NOMBRE3 (NICK3)
 * NOMBRE4 (NICK4)
-* NOMBRE5 (NICK5)
+* Javier Gonzalez (JavierGMo)
 
 ## Entorno de desarrollo
 
