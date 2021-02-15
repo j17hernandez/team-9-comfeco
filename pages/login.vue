@@ -20,9 +20,9 @@
         ></v-text-field>
       </v-col>
       <v-col xl="6" md="6" sm="12" justify="center" align="center">
-        <span>¿Olvidaste tu contraseña?</span>
+        <v-btn outlined @click="recoverPassword()" color="info">¿Olvidaste tu contraseña?</v-btn>
       </v-col>
-      <v-col xl="6" md="6" sm="12">
+      <v-col xl="6" md="6" sm="12" justify="center" align="center">
         <v-checkbox label="Mantener sesion iniciada"></v-checkbox>
       </v-col>
       <v-col cols="12">
@@ -64,17 +64,24 @@
           <span>Inicia Sesión con Google</span>
         </v-tooltip>
       </v-col>
+      <v-col>
+        <RecoverPassword ref="recover" />
+      </v-col>
     </v-row>
   </v-container>
 </template>
 <script>
 import firebase from 'firebase/app'
+import RecoverPassword from '@/pages/recoverpassword.vue'
 import 'firebase/auth'
 export default {
+  components: {
+    RecoverPassword
+  },
   data() {
     return {
       email: '',
-      password: '',
+      password: ''
     }
   },
   methods: {
@@ -97,6 +104,9 @@ export default {
         console.log(error)
       }
     },
+    recoverPassword () {
+      this.$refs.recover.dialog = true
+    }
   },
 }
 </script>
