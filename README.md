@@ -9,10 +9,10 @@ Aqui se desarrollara y almacenara el proyecto para participar en el evento de Co
 
 ## Colaboradores
 * Antony Brenes (MilanDroid)
-* NOMBRE2 (NICK2)
+* Jorge Luis Hernández (j17hernandez)
 * NOMBRE3 (NICK3)
 * NOMBRE4 (NICK4)
-* NOMBRE5 (NICK5)
+* Javier Gonzalez (JavierGMo)
 
 ## Entorno de desarrollo
 
