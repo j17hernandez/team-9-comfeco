@@ -1,42 +1,22 @@
 <template>
   <v-app light>
-    <!-- <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer> -->
-    <v-app-bar :clipped-left="clipped" fixed app color="white">
-      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
-      <img src="@/assets/img/logo.svg" alt="Logo" width="200" height="50">
+    <v-app-bar :clipped-left="clipped" fixed app color="white" class="px-12" height="92">
+      <NuxtLink to="/">
+        <img src="@/assets/img/svg/logo.svg" class="my-3" alt="Logo" width="225" height="60">
+      </NuxtLink>
     </v-app-bar>
-    <v-main class="contenedor_login">
-      <v-container>
+    <v-main>
+      <v-container fluid class="fill-height">
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer :absolute="!fixed" app color="white">
-      <span class="text-primary">
+    <v-footer padless>
+      <v-col
+        class="text-center py-6"
+        cols="12"
+      >
        Copyright &copy; {{ new Date().getFullYear() }} Team-Vue-9-Comfeco
-      </span>
+      </v-col>
     </v-footer>
   </v-app>
 </template>

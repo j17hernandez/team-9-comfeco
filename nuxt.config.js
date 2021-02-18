@@ -20,7 +20,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/estilos.css'
+    '@/assets/css/styles.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -38,14 +38,36 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyBwCnMeNbkzYspxDvtplOaX-DBLNliQ3mw",
+          authDomain: "comfeco-78a67.firebaseapp.com",
+          databaseURL: "",
+          projectId: "comfeco-78a67",
+          storageBucket: "comfeco-78a67.appspot.com",
+          messagingSenderId: "178985975443",
+          appId: "1:178985975443:web:5b6f0a37b548c850f6d766",
+          measurementId: "G-DDDZDRFGRG"
+        },
+        services: {
+          auth: true // Just as example. Can be any other service.
+        }
+      }
+    ]
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/scss/variables.scss'],
     theme: {
       dark: false,
       themes: {
+        light: {
+          brand: '#69156A',
+          brandsecondary: '#dfab01'
+        },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,

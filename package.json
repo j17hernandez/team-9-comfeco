@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/firebase": "^7.4.1",
     "core-js": "^3.8.3",
     "nuxt": "^2.14.12"
   },
