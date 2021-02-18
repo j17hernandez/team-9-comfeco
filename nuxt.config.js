@@ -36,27 +36,36 @@ export default {
     '@nuxtjs/vuetify',
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    [
-      '@nuxtjs/firebase',
-      {
-        config: {
-          apiKey: "AIzaSyBwCnMeNbkzYspxDvtplOaX-DBLNliQ3mw",
-          authDomain: "comfeco-78a67.firebaseapp.com",
-          databaseURL: "",
-          projectId: "comfeco-78a67",
-          storageBucket: "comfeco-78a67.appspot.com",
-          messagingSenderId: "178985975443",
-          appId: "1:178985975443:web:5b6f0a37b548c850f6d766",
-          measurementId: "G-DDDZDRFGRG"
-        },
-        services: {
-          auth: true // Just as example. Can be any other service.
-        }
-      }
-    ]
+   // Modules: https://go.nuxtjs.dev/config-modules
+   modules: [
+    '@nuxtjs/firebase',
   ],
+  // Firebase SDK 
+  // https://firebase.nuxtjs.org/
+  firebase: {
+    config: {
+      apiKey: process.env.VUE_APP_FIREBASE_KEY,
+      authDomain: "team-vue-9-comfeco.firebaseapp.com",
+      databaseURL: "https://team-vue-9-comfeco-default-rtdb.firebaseio.com",
+      projectId: "team-vue-9-comfeco",
+      storageBucket: "team-vue-9-comfeco.appspot.com",
+      messagingSenderId: "288922534401",
+      appId: "1:288922534401:web:e4ebaa5664bc1396ae3600",
+      measurementId: "G-DNBS9RPX82"
+    },
+    services: {
+      auth: true,
+      firestore: true,
+      storage: true,
+      performance: true,
+      analytics: true,
+      database: true
+    }
+  },
+  // Variables de entorno
+  env: {
+    VUE_APP_FIREBASE_KEY: process.env.VUE_APP_FIREBASE_KEY
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -82,6 +91,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {},
 }
