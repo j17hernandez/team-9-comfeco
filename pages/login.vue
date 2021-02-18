@@ -1,6 +1,9 @@
 <template>
-  <v-container style="background-color: white">
+  <v-container style="background-color: white; max-width: 500px">
     <v-row justify="center" align="center">
+      <v-col cols="12" class="text-center">
+        <h1 class="brand--text">Iniciar sesión</h1>
+      </v-col>
       <v-col cols="10">
         <v-text-field
           v-model="email"
@@ -19,17 +22,19 @@
           required
         ></v-text-field>
       </v-col>
-      <v-col xl="6" md="6" sm="12" justify="center" align="center">
-        <v-btn outlined @click="recoverPassword()" color="info">¿Olvidaste tu contraseña?</v-btn>
+      <v-col cols="6" justify="center" align="center">
+        <v-btn outlined color="brand" @click="recoverPassword()">
+          <h6>¿Olvidaste tu contraseña?</h6>
+        </v-btn>
       </v-col>
-      <v-col xl="6" md="6" sm="12" justify="center" align="center">
+      <v-col cols="6" justify="center" align="center">
         <v-checkbox label="Mantener sesion iniciada"></v-checkbox>
       </v-col>
-      <v-col cols="12">
-        <v-btn block color="green" dark>Ingresar</v-btn>
+      <v-col cols="12" class="px-0">
+        <v-btn class="py-6" block color="brand" dark @click="loginUser">Ingresar</v-btn>
       </v-col>
       <v-col cols="12" justify="center" align="center">
-        <span> También puedes iniciar sesion con tus redes </span>
+        <h5> También puedes iniciar sesion con tus redes </h5>
       </v-col>
       <v-col cols="6">
         <v-tooltip bottom>
@@ -37,7 +42,7 @@
             <v-btn
               class="float-right"
               icon
-              color="primary"
+              color="brandsecondary"
               v-bind="attrs"
               v-on="on"
             >
@@ -53,7 +58,7 @@
             <v-btn
               class="float-left"
               icon
-              color="red"
+              color="brandsecondary"
               v-bind="attrs"
               v-on="on"
               @click="loginGoogle()"
@@ -72,8 +77,8 @@
 </template>
 <script>
 import firebase from 'firebase/app'
-import RecoverPassword from '@/pages/recoverpassword.vue'
 import 'firebase/auth'
+import RecoverPassword from '@/pages/recoverpassword.vue'
 export default {
   components: {
     RecoverPassword
@@ -84,7 +89,24 @@ export default {
       password: ''
     }
   },
+  components: {
+    RecoverPassword
+  },
   methods: {
+    async loginUser() {
+      try {
+        await this.$fire.auth.signInWithEmailAndPassword(
+          this.email,
+          this.password
+        ).then( function (user) {
+          console.log(user)
+          alert('Logged')
+        }, function (error) {})
+      } catch (e) {
+        console.log(e)
+          alert('Not logged, error ocurred')
+      }
+    },
     loginGoogle() {
       // console.log(this.$fire.auth)
       try {

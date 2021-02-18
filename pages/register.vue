@@ -35,21 +35,21 @@
         ></v-text-field>
       </v-col>
       <v-col cols="12">
-        <v-btn block color="green" dark>Registrarse</v-btn>
+        <v-btn class="py-6" block color="brand" dark @click="createUser()">Registrarse</v-btn>
       </v-col>
       <v-spacer></v-spacer>
-      <v-col cols="12" justify="center" align="center">
-        <span>o registrate usando</span>
+      <v-col class="my-6" cols="12" justify="center" align="center">
+        <h5> O registrate usando </h5>
       </v-col>
       <v-spacer></v-spacer>
-      <v-col cols="6">
+      <v-col cols="6" class="px-4">
         <v-tooltip bottom>
           <template #activator="{ on, attrs }">
             <v-btn
               slot="activator"
               class="float-right"
               icon
-              color="primary"
+              color="brandsecondary"
               v-bind="attrs"
               v-on="on"
             >
@@ -59,17 +59,17 @@
           <span>Registrate con Facebook</span>
         </v-tooltip>
       </v-col>
-      <v-col cols="6" class="mt-1">
+      <v-col cols="6" class="px-4">
         <v-tooltip bottom>
           <template #activator="{ on, attrs }">
-            <v-btn color="red" class="float-left" icon v-bind="attrs" v-on="on">
+            <v-btn color="brandsecondary" class="float-left" icon v-bind="attrs" v-on="on">
               <v-icon x-large>mdi-google-plus</v-icon>
             </v-btn>
           </template>
           <span>Registrate con Google</span>
         </v-tooltip>
       </v-col>
-      <v-col>
+      <v-col class="my-4">
         <span>
           Al registrarte estas aceptando los
           <a>Términos y condiciones</a>, y la <a>Política de privacidad</a> y
@@ -89,5 +89,38 @@ export default {
       confirmar: '',
     }
   },
+  methods: {
+    async createUser() {
+      const email = this.email
+      const password = this.password
+      const username = this.username
+
+      try {
+        await this.$fire.auth.createUserWithEmailAndPassword(
+          email,
+          password
+        ).then( function (user) {
+          alert('User created')
+        }, function (error) {
+          alert('Error ocurred while was creating user')
+        })
+
+        await this.$fire.auth.onAuthStateChanged(function(user) {
+          user.updateProfile({
+            displayName: username
+          }).then(function() {
+            alert('User created')
+          }, function(error) {
+            alert('Error ocurred, add displayname fail')
+          });
+        })
+
+        this.$router.replace('/login')
+      } catch (e) {
+        console.log(e)
+        alert('Error register process fail')
+      }
+    }
+  }
 }
 </script>

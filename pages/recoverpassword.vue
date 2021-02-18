@@ -22,11 +22,11 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" @click="validate">
+        <v-btn color="brand" dark @click="validate">
           Enviar enlace
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="success" outlined @click="redirectLogin">
+        <v-btn color="primary" outlined @click="redirectLogin">
           Iniciar sesión
         </v-btn>
       </v-card-actions>

@@ -22,7 +22,7 @@ Se recomienda al equipo utilizar VSCode junto con la Extension Vetur junto con P
 - [Vue2](https://vuejs.org/)
 - [Nuxt.js](https://nuxtjs.org)
 - [Vuetify.js](https://vuetifyjs.com/)
-- [Firebase](https://firebase.google.com/)
+- [Firebase](https://firebase.nuxtjs.org/guide/getting-started)
 - [Jest](https://jestjs.io/)
 - [Sass](https://sass-lang.com/)
 
