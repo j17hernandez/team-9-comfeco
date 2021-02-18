@@ -22,12 +22,12 @@
           required
         ></v-text-field>
       </v-col>
-      <v-col cols="12" md="6" xl="6" justify="center" align="center">
-        <NuxtLink to="/recoverpassword">
-          <span>¿Olvidaste tu contraseña?</span>
-        </NuxtLink>
+      <v-col cols="6" justify="center" align="center">
+        <v-btn outlined color="brand" @click="recoverPassword()">
+          <h6>¿Olvidaste tu contraseña?</h6>
+        </v-btn>
       </v-col>
-      <v-col cols="12" md="6" xl="6" justify="center" align="center">
+      <v-col cols="6" justify="center" align="center">
         <v-checkbox label="Mantener sesion iniciada"></v-checkbox>
       </v-col>
       <v-col cols="12" class="px-0">
@@ -77,10 +77,8 @@
 </template>
 <script>
 import firebase from 'firebase/app'
-import RecoverPassword from '@/pages/recoverpassword.vue'
 import 'firebase/auth'
 import RecoverPassword from '@/pages/recoverpassword.vue'
-
 export default {
   components: {
     RecoverPassword
