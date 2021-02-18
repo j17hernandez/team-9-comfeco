@@ -1,9 +1,9 @@
 <template>
   <v-row justify="center" align="center" class="">
-    <v-col cols="12" sm="4" md="6" justify="center" align="center" class="d-none d-sm-block">
+    <!-- <v-col cols="12" sm="4" md="6" justify="center" align="center" class="d-none d-sm-block">
       <img v-if="tabSelected" src="@/assets/img/svg/terminal_useradd.svg" style="width: 80%">
       <img v-else src="@/assets/img/svg/terminal_userswitch.svg" style="width: 80%">
-    </v-col>
+    </v-col> -->
 
     <v-col cols="12" sm="8" md="4">
       <v-tabs v-model="tab">
