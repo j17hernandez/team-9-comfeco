@@ -1,7 +1,7 @@
 <template>
-  <v-container style="background-color: white">
+  <v-container style="max-width: 500px" class="bg-card">
     <v-row no-gutters justify="center" align="center">
-      <v-col cols="10">
+      <v-col cols="12">
         <v-text-field
           v-model="username"
           outlined
@@ -34,10 +34,11 @@
           required
         ></v-text-field>
       </v-col>
-      <v-col cols="12">
-        <v-btn class="py-6" block color="brand" dark @click="createUser()">Registrarse</v-btn>
+      <v-col cols="12"  class="px-0">
+        <v-btn class="py-6" block color="brand" dark @click="createUser()">
+          Registrarse
+        </v-btn>
       </v-col>
-      <v-spacer></v-spacer>
       <v-col class="my-6" cols="12" justify="center" align="center">
         <h5> O registrate usando </h5>
       </v-col>
@@ -94,31 +95,36 @@ export default {
       const email = this.email
       const password = this.password
       const username = this.username
+      const confirmar = this.confirmar
+      if (password === confirmar) {
+        try {
+          await this.$fire.auth.createUserWithEmailAndPassword(
+            email,
+            password
+          ).then( function (user) {
+            alert('User created', user)
+          }, function (error) {
+            alert('Error ocurred while was creating user', error)
+          })
 
-      try {
-        await this.$fire.auth.createUserWithEmailAndPassword(
-          email,
-          password
-        ).then( function (user) {
-          alert('User created')
-        }, function (error) {
-          alert('Error ocurred while was creating user')
-        })
-
-        await this.$fire.auth.onAuthStateChanged(function(user) {
-          user.updateProfile({
-            displayName: username
-          }).then(function() {
-            alert('User created')
-          }, function(error) {
-            alert('Error ocurred, add displayname fail')
-          });
-        })
-
-        this.$router.replace('/login')
-      } catch (e) {
-        console.log(e)
-        alert('Error register process fail')
+          // await this.$fire.auth.onAuthStateChanged(function(user) {
+          //   user.updateProfile({
+          //     displayName: username
+          //   }).then(function() {
+          //     alert('User created')
+          //   }, function(error) {
+          //     alert('Error ocurred, add displayname fail')
+          //   });
+          // })
+          await this.$fire.firestore.collection('usuarios').add({
+            email: email,
+            nickname: username
+          })
+          // this.$router.replace('/login')
+        } catch (e) {
+          console.log(e)
+          alert('Error register process fail')
+        }
       }
     }
   }
