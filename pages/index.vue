@@ -8,7 +8,7 @@
     <v-col cols="12" sm="8" md="4">
       <v-tabs v-model="tab">
         <v-tabs-slider color="brandsecondary"></v-tabs-slider>
-        <v-tab v-for="(item, index) in items" :key="index" @click="index === 1 ? tabSelected=true:tabSelected=false">
+        <v-tab v-for="(item, index) in items" :key="index">
           <h3 class="brand--text">{{ item }}</h3>
         </v-tab>
       </v-tabs>
@@ -31,14 +31,16 @@
 <script>
 import Login from '@/pages/login.vue'
 import Register from '@/pages/register.vue'
+// import basic from '@/mixins/basic.js'
 export default {
   components: { Login, Register },
+  // mixins: [basic],
   data() {
     return {
       tab: true,
       items: ['Inicia sesión', 'Registrar'],
       tabSelected: false
     }
-  },
+  }
 }
 </script>
