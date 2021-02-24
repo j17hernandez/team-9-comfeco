@@ -43,32 +43,8 @@
         <h5> O registrate usando </h5>
       </v-col>
       <v-spacer></v-spacer>
-      <v-col cols="6" class="px-4">
-        <v-tooltip bottom>
-          <template #activator="{ on, attrs }">
-            <v-btn
-              slot="activator"
-              class="float-right"
-              icon
-              color="brandsecondary"
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-icon x-large>mdi-facebook</v-icon>
-            </v-btn>
-          </template>
-          <span>Registrate con Facebook</span>
-        </v-tooltip>
-      </v-col>
-      <v-col cols="6" class="px-4">
-        <v-tooltip bottom>
-          <template #activator="{ on, attrs }">
-            <v-btn color="brandsecondary" class="float-left" icon v-bind="attrs" v-on="on">
-              <v-icon x-large>mdi-google-plus</v-icon>
-            </v-btn>
-          </template>
-          <span>Registrate con Google</span>
-        </v-tooltip>
+      <v-col cols="12">
+        <LoginSocial :observador="observador" :firebase="firebase" />
       </v-col>
       <v-col class="my-4">
         <span>
@@ -81,13 +57,19 @@
   </v-container>
 </template>
 <script>
+import firebase from 'firebase/app'
+import LoginSocial from '@/components/loginSocial'
 export default {
+  components: {
+    LoginSocial
+  },
   data() {
     return {
       username: '',
       email: '',
       password: '',
       confirmar: '',
+      firebase: firebase
     }
   },
   methods: {
@@ -126,6 +108,18 @@ export default {
           alert('Error register process fail')
         }
       }
+    },
+    observador () {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.isAuthenticated = true
+          this.$router.push('paginas/')
+          // var uid = user.uid
+        } else {
+          this.$router.push('/')
+          this.isAuthenticated = false
+        }
+      })
     }
   }
 }
