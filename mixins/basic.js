@@ -5,10 +5,10 @@ const basic = {
   watch: {
     isAuthenticated(val) {
       if (val) {
-        if (this.$route.path.includes('paginas/')) {
-          console.log('ya estoy')
+        if (this.$route.path.includes('paginas/home/')) {
+          // console.log('ya estoy')
         } else {
-          this.$router.push('paginas/')
+          this.$router.push('paginas/home/')
         }
       } else {
         this.$router.push('/')
@@ -49,7 +49,7 @@ const basic = {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           this.isAuthenticated = true
-          this.usuario = user
+          // this.usuario = user
           // var uid = user.uid
         } else {
           this.isAuthenticated = false
