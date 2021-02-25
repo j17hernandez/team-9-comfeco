@@ -44,39 +44,8 @@
       <v-col cols="12" justify="center" align="center">
         <h5> También puedes iniciar sesion con tus redes </h5>
       </v-col>
-      <v-col cols="6">
-        <v-tooltip bottom>
-          <template #activator="{ on, attrs }">
-            <v-btn
-              class="float-right"
-              icon
-              color="brandsecondary"
-              v-bind="attrs"
-              v-on="on"
-              @click="loginFacebook()"
-            >
-              <v-icon x-large>mdi-facebook</v-icon>
-            </v-btn>
-          </template>
-          <span>Inicia Sesión con Facebook</span>
-        </v-tooltip>
-      </v-col>
-      <v-col cols="6">
-        <v-tooltip bottom>
-          <template #activator="{ on, attrs }">
-            <v-btn
-              class="float-left"
-              icon
-              color="brandsecondary"
-              v-bind="attrs"
-              v-on="on"
-              @click="loginGoogle()"
-            >
-              <v-icon x-large>mdi-google-plus</v-icon>
-            </v-btn>
-          </template>
-          <span>Inicia Sesión con Google</span>
-        </v-tooltip>
+      <v-col cols="12">
+        <LoginSocial :observador="observador" :firebase="firebase" />
       </v-col>
       <v-col>
         <RecoverPassword ref="recover" />
@@ -88,9 +57,11 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import RecoverPassword from '@/pages/recoverpassword.vue'
+import LoginSocial from '@/components/loginSocial.vue'
 export default {
   components: {
-    RecoverPassword
+    RecoverPassword,
+    LoginSocial
   },
   data() {
     return {
@@ -98,11 +69,13 @@ export default {
       password: '',
       exist_error: false,
       menssage: '',
-      show1: false
+      show1: false,
+      firebase: firebase,
     }
   },
   components: {
-    RecoverPassword
+    RecoverPassword,
+    LoginSocial
   },
   methods: {
     async loginUser() {
@@ -120,28 +93,13 @@ export default {
           El acceso a esta cuenta se ha desactivado temporalmente debido a muchos intentos fallidos de inicio de sesión. Puede restaurarlo inmediatamente restableciendo su contraseña o puede intentarlo de nuevo más tarde. `
         } else if (error.code === 'auth/wrong-password') {
           this.menssage = 'La contraseña no es válida o el usuario no tiene contraseña.'
+        } else if (error.code === 'auth/invalid-email') {
+          this.menssage = 'La dirección de correo electrónico tiene un formato incorrecto'
+        } else if (error.code === 'auth/user-not-found') {
+          this.menssage = 'No hay ningún registro de usuario correspondiente a este identificador. Es posible que el usuario haya sido eliminado'
         }
         console.log(error)
       })
-    },
-    loginGoogle() {
-      try {
-        const provider = new firebase.auth.GoogleAuthProvider()
-        firebase
-          .auth()
-          .signInWithPopup(provider)
-          .then((result) => {
-            const obj = {
-              credential: result.credential,
-              token: result.credential.accessToken,
-              user: result.user,
-            }
-            localStorage.setItem('InfoUser', JSON.stringify(obj))
-            this.observador()
-          })
-      } catch (error) {
-        console.log(error)
-      }
     },
     recoverPassword () {
       this.$refs.recover.dialog = true
@@ -150,33 +108,12 @@ export default {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           this.isAuthenticated = true
-          this.$router.push('paginas/')
+          this.$router.push('paginas/home/')
           // var uid = user.uid
         } else {
           this.$router.push('/')
           this.isAuthenticated = false
         }
-      })
-    },
-    loginFacebook () {
-      const provider = new firebase.auth.FacebookAuthProvider();
-      firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then((result) => {
-        const obj = {
-          credential: result.credential,
-          user: result.user,
-          accessToken: credential.accessToken
-        }
-        console.log('Info user', obj)
-      })
-      .catch((error) => {
-        let errorCode = error.code
-        let errorMessage = error.message
-        // var email = error.email
-        // var credential = error.credential
-        console.log('Error', errorCode, errorMessage)
       })
     }
   },
