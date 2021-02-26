@@ -43,7 +43,7 @@
       </v-col>
       <!--comunidades-->
       <v-col md="6" lg="6" sm="12">
-          <Carrusel :arrows="true" :hide_delimiter="true" :cycle="true" :items="itemsLeaders" :colorText="'white'" />
+          <Carrusel :arrows="true" :hide_delimiter="true" :hide_delimiters="true" :cycle="true" :items="itemsLeaders" :colorText="'white'" />
           <Carrusel :arrows="false" :hide_delimiter="false" :cycle="false" :items="itemsSponsor" :colorText="'white'" />
         <v-container>
           reloj: horas

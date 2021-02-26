@@ -4,8 +4,9 @@
       :cycle="cycle"
       height="200px"
       width="100%"
-      :hide-delimiter-background="hide_delimiter"
+      :hide-delimiter-background="hide_delimiterBg"
       show-arrows-on-hover
+      :hide-delimiters="hide_delimiters"
       :show-arrows="arrows"
     >
       <v-carousel-item
@@ -44,8 +45,12 @@ export default {
       type: Boolean,
       default: true
     },
-    hide_delimiter: {
+    hide_delimiterBg: {
       type: Boolean
+    },
+    hide_delimiters: {
+      type: Boolean,
+      default: false
     },
     cycle: {
       type: Boolean
