@@ -4,14 +4,9 @@
       :cycle="cycle"
       height="200px"
       width="100%"
-<<<<<<< HEAD
-      :hide-delimiter-background="hide_delimiter"
-      show-arrows-on-hover
-=======
       :hide-delimiter-background="hide_delimiterBg"
       show-arrows-on-hover
       :hide-delimiters="hide_delimiters"
->>>>>>> a7b82a8a012c1d2a9361f8529b1338f85537b7ed
       :show-arrows="arrows"
     >
       <v-carousel-item
