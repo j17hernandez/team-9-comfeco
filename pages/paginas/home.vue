@@ -10,9 +10,9 @@
       </p> </v-container
     ><!--subheader home-->
     <v-row>
-      <v-col>
+      <v-col cols="4">
         <v-card>
-          <v-row>
+          <v-row class="mx-4">
             <v-col>Comunidades</v-col>
             <v-col><a href=''>Ver más</a></v-col>
           </v-row>
@@ -26,10 +26,6 @@
 
               <v-list-item-content>
                 <v-list-item-title v-text="folder.title"></v-list-item-title>
-
-                <v-list-item-subtitle
-                  v-text="folder.subtitle"
-                ></v-list-item-subtitle>
               </v-list-item-content>
 
               <v-list-item-action>
@@ -42,14 +38,17 @@
           </template>
         </v-card> </v-col
       ><!--comunidades-->
-      <v-col>
-        <v-container>
-          reloj: horas
-        </v-container> </v-col
+      <v-col cols="5">
+        <v-container class="clockContainer">
+          <p class="clockStyle">
+            {{clock()}}
+          </p>
+        </v-container><!--clock-->
+      </v-col
       ><!--main-->
-      <v-col>
+      <v-col cols="3">
         <v-card>
-          <v-row>
+          <v-row class="mx-4">
             <v-col>Talleres</v-col>
             <v-col><a href="">Ver más</a></v-col>
           </v-row>
@@ -101,19 +100,19 @@ export default {
       usuario: {},
       folders: [
         {
-          title: 'adios',
+          title: 'Comunidad de programadores',
           subtitle: 'texto de prueba'
         },
         {
-          title: 'algos',
+          title: 'Comunidad React.js',
           subtitle: 'texto de prueba'
         },
         {
-          title: 'algoss',
+          title: 'Comunidad DEV',
           subtitle: 'texto de prueba'
         },
         {
-          title: 'algoa',
+          title: 'Comunidad Vue.js',
           subtitle: 'texto de prueba'
         }
       ],
@@ -158,7 +157,7 @@ export default {
       if (this.setTimes.seconds !== 0) {
         setTimeout(() => {
           este.setTimes.seconds = este.setTimes.seconds - 1
-        }, 500)
+        }, 1000)
       }
 
       if (this.setTimes.days !== 0) {
@@ -186,7 +185,7 @@ export default {
         alert('Se acabo el contador')
       }
 
-      return `days : ${this.setTimes.days} hours : ${this.setTimes.hours} minutes : ${this.setTimes.minutes} seconds : ${this.setTimes.seconds}`
+      return `Days : ${this.setTimes.days} Hours : ${this.setTimes.hours} Minutes : ${this.setTimes.minutes} Seconds : ${this.setTimes.seconds}`
     },
     obtenerUser() {
       this._obtenerUsuario()
@@ -194,4 +193,27 @@ export default {
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+
+.d-flex-p{
+  display: flex;
+}
+
+.row-p{
+  flex-direction: row;
+}
+
+.column-p{
+  flex-direction: column;
+}
+
+.clockStyle{
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.clockContainer{
+  background-color: #aaaaaa;
+}
+
+</style>
