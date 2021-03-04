@@ -2,7 +2,7 @@
     <footer class="footer">
       <div class="footer-notes">
         <div class="col" style="float:left;width:60%;">
-          <div style="margin-bottom:20px;">Vue Framework<br/><a href="https://github.com/nuxt/nuxt.js" target="_blank">Nuxt.js</a></div>
+          <div style="margin-bottom:20px;">Vue<br/><a href="https://github.com/nuxt/nuxt.js" target="_blank">Nuxt.js</a></div>
           <div style="margin-bottom:20px;">Lorem Ipsum by<br/><a href="http://spaceipsum.com" target="_blank">http://spaceipsum.com</a></div>
           <div style="margin-bottom:20px;">UI Gradients by<br/><a href="http://uigradients.com" target="_blank">http://uigradients.com</a></div>
         </div>
@@ -26,7 +26,6 @@
         <div class="clearfix"></div>
       </div>
     </footer>
-  </div>
 </template>
 
 <style>

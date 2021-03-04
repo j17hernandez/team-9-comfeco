@@ -1,14 +1,14 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import Swal from 'sweetalert2'
 
 const basic = {
   watch: {
     isAuthenticated(val) {
       if (val) {
-        if (this.$route.path.includes('paginas/home/')) {
-          // console.log('ya estoy')
+        if (this.$route.path.includes('paginas/')) {
         } else {
-          this.$router.push('paginas/home/')
+          this.$router.push('paginas/')
         }
       } else {
         this.$router.push('/')
@@ -47,12 +47,14 @@ const basic = {
     },
     _obtenerUsuario () {
       firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          this.isAuthenticated = true
+        // console.log('user', user)
+        if (user.emailVerified === true) {
+            this.isAuthenticated = true
           // this.usuario = user
           // var uid = user.uid
         } else {
           this.isAuthenticated = false
+          Swal.fire('Advertencia', 'Este usuario no está autenticado, revisa tu correo y activa tu usuario', 'info')
           this.$router.push('/')
         }
       })

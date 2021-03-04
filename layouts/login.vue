@@ -1,5 +1,30 @@
 <template>
   <v-app>
+    <v-navigation-drawer
+      v-model="drawer"
+      :mini-variant="miniVariant"
+      :clipped="clipped"
+      fixed
+      v-if="!setMobile"
+      app
+    >
+      <v-list>
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.to"
+          router
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title" />
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-app-bar color="white" height="100">
       <v-row no-gutters justify-xl="space-around">
         <v-col cols="4">
@@ -13,15 +38,14 @@
             />
           </NuxtLink>
         </v-col>
+        <v-app-bar-nav-icon v-show="!setMobile" @click.stop="drawer = !drawer" />
         <v-col v-show="setMobile" style="margin-top: 2em;">
-          <!-- <v-container> -->
-              <v-btn text><a class="items" href="#">Inicio</a></v-btn>
-              <v-btn text><a class="items" href="#">Comunidades</a></v-btn>
-              <v-btn text><a class="items" href="#">Talleres</a></v-btn>
-              <v-btn text>
-                <a class="items" href="#">Creadores de contenido</a>
-              </v-btn>
-          <!-- </v-container> -->
+            <v-btn text><a class="items" href="#">Inicio</a></v-btn>
+            <v-btn text><a class="items" href="#">Comunidades</a></v-btn>
+            <v-btn text><a class="items" href="#">Talleres</a></v-btn>
+            <v-btn text>
+              <a class="items" href="#">Creadores de contenido</a>
+            </v-btn>
         </v-col>
         <!-- <v-col>
           <v-container class="user-toggle">

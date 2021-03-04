@@ -14,12 +14,12 @@
       </v-tabs>
       <v-tabs-items v-model="tab">
         <v-tab-item>
-          <v-card elevation="9" class="py-10">
+          <v-card elevation="9" class="py-5">
             <Login ref="login" />
           </v-card>
         </v-tab-item>
         <v-tab-item>
-          <v-card elevation="9" class="py-10">
+          <v-card elevation="9" class="py-5">
             <Register ref="register" />
           </v-card>
         </v-tab-item>
@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import Login from '@/pages/login.vue'
-import Register from '@/pages/register.vue'
+import Login from '@/components/login.vue'
+import Register from '@/components/register.vue'
 // import basic from '@/mixins/basic.js'
 export default {
   components: { Login, Register },
