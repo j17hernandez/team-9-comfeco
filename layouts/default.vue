@@ -55,7 +55,7 @@ export default {
       ],
       miniVariant: false,
       right: true,
-      rightDrawer: false,
+      rightDrawer: true,
       usuario: this.usuario
     }
   },
