@@ -4,6 +4,9 @@ import 'firebase/auth'
 const basic = {
   watch: {
     isAuthenticated(val) {
+      // if(!val){
+      //   this.$router.push('/');
+      // }
       if (val) {
         if (this.$route.path.includes('paginas/home/')) {
           // console.log('ya estoy')

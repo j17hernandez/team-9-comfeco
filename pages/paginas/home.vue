@@ -59,13 +59,14 @@
           <template v-for="(course, index) in courses">
             <v-list-item :key="index">
               <v-list-item-avatar>
-                <v-icon>{{ course.icon }}</v-icon>
+                <v-icon v-if="isToday(course.hour)">mdi-checkbox-marked-circle</v-icon>
+                <v-icon v-else>mdi-more</v-icon>
               </v-list-item-avatar>
 
               <v-list-item-content>
                 <v-list-item-title v-text="course.title"></v-list-item-title>
                 <v-list-item-subtitle
-                  v-text="course.hour + ' ' + course.schedule"
+                  v-text="course.hour"
                 ></v-list-item-subtitle>
                 <p>
                   By
@@ -87,6 +88,9 @@ import basic from '@/mixins/basic.js'
 export default {
   layout: 'login',
   mixins: [basic],
+  mounted(){
+
+  },
   data() {
     return {
       timeEvent: 2,
@@ -117,39 +121,12 @@ export default {
         }
       ],
       items: ['State of JavaScript', 'IA', 'Flutter'],
-      courses: [
-        {
-          id: 1,
-          title: 'State of JavaScript',
-          hour: '16:00',
-          schedule: 'PM',
-          author: 'Fernando Herrera',
-          linkAuthor: 'https://google.com',
-          icon: ' mdi-checkbox-marked-circle'
-        },
-        {
-          id: 2,
-          title: 'State of JavaScript',
-          hour: '13:00',
-          schedule: 'PM',
-          author: 'Fernando Herrera',
-          linkAuthor: 'https://google.com',
-          icon: 'mdi-more'
-        },
-        {
-          id: 3,
-          title: 'State of JavaScript',
-          hour: '15:00',
-          schedule: 'PM',
-          author: 'Fernando Herrera',
-          linkAuthor: 'https://google.com',
-          icon: ' mdi-checkbox-marked-circle'
-        }
-      ]
+      courses: []
     }
   },
   mounted () {
     //  this.obtenerUser()
+    this.allCourses();
   },
   methods: {
     clock: function() {
@@ -189,7 +166,16 @@ export default {
     },
     obtenerUser() {
       this._obtenerUsuario()
-    }
+    },
+    async allCourses (){
+      const promiseFirebase = await fetch('https://team-vue-9-comfeco-default-rtdb.firebaseio.com/talleres.json', {method : 'GET'});
+      const data = await promiseFirebase.json();
+      for (const key in data) this.courses.push(data[key]);
+    },
+    isToday(arg){return Number.parseInt(arg)===(new Date().getHours)},
+  },
+  computed : {
+    
   }
 }
 </script>
