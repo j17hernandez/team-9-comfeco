@@ -30,6 +30,7 @@
       app
       color="white"
       class="px-12"
+      width="100%"
       height="92"
     >
       <NuxtLink to="/">
