@@ -47,9 +47,9 @@
        
     </v-app-bar>
     <v-main>
-      <v-container fluid class="fill-height">
+      <!-- <v-container fluid class="fill-height"> -->
         <nuxt />
-      </v-container>
+      <!-- </v-container> -->
     </v-main>
     <v-footer padless>
       <v-col class="text-center py-6" cols="12">
