@@ -11,7 +11,7 @@
     <v-row>
       <v-col md="3" lg="3" sm="12">
         <v-card>
-          <v-row>
+          <v-row class="mx-4">
             <v-col>Comunidades</v-col>
             <v-col><a href=''>Ver más</a></v-col>
           </v-row>
@@ -25,10 +25,6 @@
 
               <v-list-item-content>
                 <v-list-item-title v-text="folder.title"></v-list-item-title>
-
-                <v-list-item-subtitle
-                  v-text="folder.subtitle"
-                ></v-list-item-subtitle>
               </v-list-item-content>
 
               <v-list-item-action>
@@ -43,16 +39,16 @@
       </v-col>
       <!--comunidades-->
       <v-col md="6" lg="6" sm="12">
-          <Carrusel :arrows="true" :hide_delimiter="true" :hide_delimiters="false" :cycle="true" :items="itemsLeaders" :colorText="'white'" />
-          <Carrusel :arrows="false" :hide_delimiter="false" :cycle="false" :items="itemsSponsor" :colorText="'dark'" />
-        <v-container>
-          reloj: horas
+          <Carrusel :arrows="true" :hide_delimiter="true" :cycle="true" :items="itemsLeaders" :colorText="'white'" />
+          <Carrusel :arrows="false" :hide_delimiter="false" :cycle="false" :items="itemsSponsor" :colorText="'white'" />
+        <v-container class="clockContainer clockStyle">
+          {{clock()}}
         </v-container>
         </v-col>
       <!--main-->
       <v-col md="3" lg="3" sm="12">
         <v-card>
-          <v-row>
+          <v-row class="mx-4">
             <v-col>Talleres</v-col>
             <v-col><a href="">Ver más</a></v-col>
           </v-row>
@@ -143,19 +139,19 @@ export default {
       usuario: {},
       folders: [
         {
-          title: 'adios',
+          title: 'Comunidad de programadores',
           subtitle: 'texto de prueba'
         },
         {
-          title: 'algos',
+          title: 'Comunidad React.js',
           subtitle: 'texto de prueba'
         },
         {
-          title: 'algoss',
+          title: 'Comunidad DEV',
           subtitle: 'texto de prueba'
         },
         {
-          title: 'algoa',
+          title: 'Comunidad Vue.js',
           subtitle: 'texto de prueba'
         }
       ],
@@ -373,7 +369,7 @@ export default {
       if (this.setTimes.seconds !== 0) {
         setTimeout(() => {
           este.setTimes.seconds = este.setTimes.seconds - 1
-        }, 500)
+        }, 1000)
       }
 
       if (this.setTimes.days !== 0) {
@@ -401,7 +397,7 @@ export default {
         alert('Se acabo el contador')
       }
 
-      return `days : ${this.setTimes.days} hours : ${this.setTimes.hours} minutes : ${this.setTimes.minutes} seconds : ${this.setTimes.seconds}`
+      return `Days : ${this.setTimes.days} Hours : ${this.setTimes.hours} Minutes : ${this.setTimes.minutes} Seconds : ${this.setTimes.seconds}`
     },
     obtenerUser() {
       this._obtenerUsuario()
@@ -409,4 +405,27 @@ export default {
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+
+.d-flex-p{
+  display: flex;
+}
+
+.row-p{
+  flex-direction: row;
+}
+
+.column-p{
+  flex-direction: column;
+}
+
+.clockStyle{
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.clockContainer{
+  background-color: #aaaaaa;
+}
+
+</style>
