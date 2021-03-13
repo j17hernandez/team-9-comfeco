@@ -38,14 +38,17 @@
             />
           </NuxtLink>
         </v-col>
-        <v-app-bar-nav-icon v-show="!setMobile" @click.stop="drawer = !drawer" />
+        <v-app-bar-nav-icon
+          v-show="!setMobile"
+          @click.stop="drawer = !drawer"
+        />
         <v-col v-show="setMobile" style="margin-top: 2em;">
-            <v-btn text><a class="items" href="#">Inicio</a></v-btn>
-            <v-btn text><a class="items" href="#">Comunidades</a></v-btn>
-            <v-btn text><a class="items" href="#">Talleres</a></v-btn>
-            <v-btn text>
-              <a class="items" href="#">Creadores de contenido</a>
-            </v-btn>
+          <v-btn text><a class="items" href="#">Inicio</a></v-btn>
+          <v-btn text><a class="items" href="#">Comunidades</a></v-btn>
+          <v-btn text><a class="items" href="#">Talleres</a></v-btn>
+          <v-btn text>
+            <a class="items" href="#">Creadores de contenido</a>
+          </v-btn>
         </v-col>
         <!-- <v-col>
           <v-container class="user-toggle">
@@ -68,17 +71,18 @@
                   </v-row>
                 </v-container>
               </v-col> -->
-              <v-col cols="2" class="user-toggle brandsecondary">
-                <Header ref="header" :user="usuario" v-if="isAuthenticated === true" />
-              </v-col>
-            </v-row>
-          <!-- </v-container> -->
-        <!-- </v-col>
-      </v-row> -->
+        <v-col cols="2" class="user-toggle brandsecondary">
+          <Header
+            ref="header"
+            :user="usuario"
+            v-if="isAuthenticated === true"
+          />
+        </v-col>
+      </v-row>
     </v-app-bar>
     <v-main>
       <!-- <v-container fluid class="fill-height"> -->
-        <nuxt />
+      <nuxt />
       <!-- </v-container> -->
     </v-main>
     <v-footer padless>
@@ -90,18 +94,19 @@
 </template>
 
 <script>
-import basic from '@/mixins/basic'
-import Header from '@/layouts/header.vue'
+import basic from '@/mixins/basic';
+import Header from '@/layouts/header.vue';
 export default {
   mixins: [basic],
   components: {
     Header
   },
-  mounted () {
+  mounted() {
     // this.getUser()
   },
   data() {
     return {
+      drawer: false,
       clipped: false,
       drawer: false,
       fixed: false,
@@ -121,18 +126,23 @@ export default {
     }
   },
   computed: {
-    setMobile () {
+    setMobile() {
       switch (this.$vuetify.breakpoint.name) {
-        case 'xs': return false
-        case 'sm': return false
-        case 'md': return true
-        case 'lg': return true
-        case 'xl': return true
+        case "xs":
+          return false
+        case "sm":
+          return false
+        case "md":
+          return true
+        case "lg":
+          return true
+        case "xl":
+          return true
       }
     }
   },
   methods: {
-    getUser () {
+    getUser() {
       this._obtenerUsuario()
     }
   }
@@ -149,7 +159,8 @@ a.items {
   border-radius: 40px 0 0 40px;
   line-height: 60px;
 }
-.v-toolbar__content, .v-toolbar__extension {
+.v-toolbar__content,
+.v-toolbar__extension {
   padding: 0px !important;
 }
 </style>

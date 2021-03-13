@@ -5,6 +5,9 @@ import Swal from 'sweetalert2'
 const basic = {
   watch: {
     isAuthenticated(val) {
+      // if(!val){
+      //   this.$router.push('/');
+      // }
       if (val) {
         if (this.$route.path.includes('paginas/')) {
         } else {
@@ -47,7 +50,7 @@ const basic = {
     },
     _obtenerUsuario () {
       firebase.auth().onAuthStateChanged((user) => {
-        // console.log('user', user)
+        console.log('user', user)
         if (user.emailVerified === true) {
             this.isAuthenticated = true
           // this.usuario = user

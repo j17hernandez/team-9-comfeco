@@ -39,11 +39,12 @@
     </v-container>
 </template>
 <script>
+// import firebase from 'firebase/app'
 export default {
   props: {
-    observador: {
-      type: Function
-    },
+    // observador: {
+    //   type: Function
+    // },
     firebase: Object
   },
   data(){
@@ -70,18 +71,18 @@ export default {
         console.log(error)
       }
     },
-    // observador () {
-    //   firebase.auth().onAuthStateChanged((user) => {
-    //     if (user) {
-    //       this.isAuthenticated = true
-    //       this.$router.push('paginas/')
-    //       // var uid = user.uid
-    //     } else {
-    //       this.$router.push('/')
-    //       this.isAuthenticated = false
-    //     }
-    //   })
-    // },
+    observador () {
+      this.firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.isAuthenticated = true
+          this.$router.push('paginas/')
+          // var uid = user.uid
+        } else {
+          this.$router.push('/')
+          this.isAuthenticated = false
+        }
+      })
+    },
     loginFacebook () {
       const provider = new this.firebase.auth.FacebookAuthProvider();
       this.firebase

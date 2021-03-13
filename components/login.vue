@@ -53,7 +53,7 @@
           <h5> También puedes iniciar sesion con tus redes </h5>
         </v-col>
         <v-col cols="12">
-          <LoginSocial :observador="observador" :firebase="firebase" />
+          <LoginSocial :firebase="firebase" />
         </v-col>
         <v-col>
           <RecoverPassword ref="recover" />
