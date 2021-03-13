@@ -8,14 +8,26 @@ const basic = {
       // if(!val){
       //   this.$router.push('/');
       // }
-      if (val) {
-        if (this.$route.path.includes('paginas/')) {
-        } else {
-          this.$router.push('paginas/')
-        }
-      } else {
-        this.$router.push('/')
+      // if (val) {
+      //   if (this.$route.path.includes('paginas/')) {
+      //   } else {
+      //     this.$router.push('paginas/')
+      //   }
+      // } else {
+      //   this.$router.push('/')
+      // }
+      if(!val){
+        this.$router.push('/');
       }
+      // if (val) {
+      //   if (this.$route.path.includes('paginas/home/')) {
+      //     // console.log('ya estoy')
+      //   } else {
+      //     this.$router.push('paginas/home/')
+      //   }
+      // } else {
+      //   this.$router.push('/')
+      // }
     }
   },
   data () {

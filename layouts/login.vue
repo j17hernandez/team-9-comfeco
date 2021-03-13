@@ -25,60 +25,51 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar color="white" height="100">
-      <v-row no-gutters justify-xl="space-around">
-        <v-col cols="4">
-          <NuxtLink to="/">
-            <img
-              src="@/assets/img/svg/logo.svg"
-              class="my-3"
-              alt="Logo"
-              width="225"
-              height="60"
-            />
-          </NuxtLink>
-        </v-col>
-        <v-app-bar-nav-icon
-          v-show="!setMobile"
-          @click.stop="drawer = !drawer"
-        />
-        <v-col v-show="setMobile" style="margin-top: 2em;">
-          <v-btn text><a class="items" href="#">Inicio</a></v-btn>
-          <v-btn text><a class="items" href="#">Comunidades</a></v-btn>
-          <v-btn text><a class="items" href="#">Talleres</a></v-btn>
-          <v-btn text>
-            <a class="items" href="#">Creadores de contenido</a>
-          </v-btn>
-        </v-col>
-        <!-- <v-col>
-          <v-container class="user-toggle">
-            <v-row justify="center" no-gutters class="user-toggle">
-              <v-col>
-                <v-btn icon><v-icon dark> mdi-bell </v-icon></v-btn>
-                <v-container>
-                  <v-row>
-                    <v-col cols="4">
-                      <v-avatar>
-                        <img
-                          src="https://cdn.vuetifyjs.com/images/john.jpg"
-                          alt="John"
-                        />
-                      </v-avatar>
-                    </v-col>
-                    <v-col cols="4">
-                      <p>name</p>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-col> -->
-        <v-col cols="2" class="user-toggle brandsecondary">
-          <Header
-            ref="header"
-            :user="usuario"
-            v-if="isAuthenticated === true"
-          />
-        </v-col>
-      </v-row>
+    <v-app-bar color="white" app height="100">
+          <v-toolbar-title>
+            <NuxtLink to="/">
+              <img
+                src="@/assets/img/svg/logo.svg"
+                class="my-3"
+                alt="Logo"
+                width="225"
+                height="60"
+              />
+            </NuxtLink>
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+            
+          <v-toolbar-items class="hidden-sm-and-down">
+            
+            <v-btn text><a class="items" href="#">Inicio</a></v-btn>
+            <v-btn text><a class="items" href="#">Comunidades</a></v-btn>
+            <v-btn text><a class="items" href="#">Talleres</a></v-btn>
+            <v-btn text><a class="items" href="#">Creadores de contenido</a></v-btn>
+            <!-- <Header ref="header" :user="usuario" v-if="isAuthenticated === true" /> -->
+            <v-col cols="2" class="user-toggle brandsecondary">
+                <Header ref="header" :user="usuario" v-if="isAuthenticated === true" />
+              </v-col>
+          </v-toolbar-items>
+          <!--d-flex .d-sm-none hidden-xs-and-up-->
+          <v-app-bar-nav-icon v-show="!setMobile" @click.stop="drawer = !drawer" />
+          <v-menu class="d-flex d-sm-none">
+              <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon><!--boton de hamburguesa-->
+          </v-menu>
+        <!-- <v-navigation-drawer
+        v-model="drawer"
+            absolute
+            temporary
+          >
+              <v-btn text><a class="items" href="#">Inicio</a></v-btn>
+              <v-btn text><a class="items" href="#">Comunidades</a></v-btn>
+              <v-btn text><a class="items" href="#">Talleres</a></v-btn>
+              <v-btn text><a class="items" href="#">Creadores de contenido</a></v-btn>
+              
+              <v-col cols="2" class="user-toggle brandsecondary">
+                <Header ref="header" :user="usuario" v-if="isAuthenticated === true" />
+              </v-col>
+          </v-navigation-drawer> -->
+       
     </v-app-bar>
     <v-main>
       <!-- <v-container fluid class="fill-height"> -->
