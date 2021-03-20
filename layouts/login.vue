@@ -40,7 +40,7 @@
       <v-spacer></v-spacer>
 
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn text><a class="items" href="#">Inicio</a></v-btn>
+        <v-btn text><a class="items" href="/paginas">Inicio</a></v-btn>
         <v-btn text><a class="items" href="#">Comunidades</a></v-btn>
         <v-btn text><a class="items" href="#">Talleres</a></v-btn>
         <v-btn text><a class="items" href="#">Creadores de contenido</a></v-btn>
@@ -65,7 +65,7 @@
         <v-list>
           <v-list-item>
             <v-list-item-title>
-              <v-btn v-if="isAuthenticated === true" to="/user" >My Profile</v-btn>
+              <v-btn v-if="isAuthenticated === true" to="user/" >My Profile</v-btn>
             </v-list-item-title>
           </v-list-item>
           <v-list-item>

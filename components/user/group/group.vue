@@ -11,7 +11,7 @@
                     </v-container>
                     <v-container class="px-5 colortest">
                         <v-row>
-                            <v-col><h4>Crazy techs</h4></v-col>
+                            <v-col><h4>{{nombreGrupo}}</h4></v-col>
                             <v-col>
                                 <v-avatar
                                     size="30"
@@ -24,7 +24,7 @@
                         </v-row>
                     </v-container>
                     <v-list>
-                        <template v-for="(tech, index) in techs">
+                        <template v-for="(tech, index) in techsDelGrupo[0]">
                                 <v-list-item
                                     :key="tech.name"
                                 >
@@ -38,7 +38,7 @@
                                         <v-list-item-subtitle v-text="tech.level"></v-list-item-subtitle>
                                     </v-list-item-content>
                                     <v-list-item-action>
-                                        <p>{{tech.position}}</p>
+                                        <p>{{tech.puesto}}</p>
                                     </v-list-item-action>
                                 </v-list-item>
                                 
@@ -77,8 +77,8 @@
                 <v-row>
                     <v-col
                         cols="3"
-                        v-for="option in testArray"
-                        :key="option"
+                        v-for="(group, index) in groups"
+                        :key="group.nombreGrupo"
                     >
                         <v-card>
                             <v-img
@@ -101,25 +101,36 @@
                             </v-img>
                             <v-container class="colortest my-3">
                                 <div>
-                                    <h4>TypeScript</h4>
+                                    <h4>{{group.language}}</h4>
                                 </div>
                             </v-container>
                             <v-container>
                                 <h4>
-                                    Los crypto
+                                    {{group.nombreGrupo}}
                                 </h4>
                             </v-container>
                             <v-card-text>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum fugiat totam aut perspiciatis impedit, eius quia distinctio officia, iusto libero omnis, dolore nostrum temporibus vel voluptate placeat corrupti! Hic, officia?
+                                {{group.descriptionGroup}}
                             </v-card-text>
                             <v-container>
                                 <v-btn
                                     outlined
                                     rounded
-                                    text
+                                    color="success"
+                                    v-if="!group.unido"
+                                    @click="unirAlGrupo(index)"
                                 >
                                     Unirse
-                                </v-btn>  
+                                </v-btn>
+                                <v-btn
+                                    outlined
+                                    rounded
+                                    color="error"
+                                    v-else
+                                    @click="salirDelGrupo(index)"
+                                >
+                                    Salir
+                                </v-btn>
                             </v-container>
                                                       
                         </v-card>
@@ -131,13 +142,32 @@
 </template>
 
 <script>
+
+import firebase from 'firebase';
+import Swal from 'sweetalert2';
+
+
 export default {
     props : {
 
     },
+    async mounted(){
+        
+        await this.allGroups();
+        
+    },
     data(){
         return{
-            testArray : [0,1,2,3,4,5,6,7],
+            testArray : [
+                'JavaScript',
+                'Node',
+                'Laravel',
+                'Java',
+                'TypeScript',
+                'React',
+                'Vue',
+                'Svelte'
+            ],
             techs : [
                 {
                     name : 'JuanSecu',
@@ -169,9 +199,125 @@ export default {
                     level : 'Apenas aprendiendo',
                     position : 'Integrante'
                 },
-            ]
+            ],
+            groups : [],
+            techsDelGrupo : [],
+            unido : false,
+            nombreGrupo : 'Aun no estas en ningun grupo',
         };
     },
+    methods : {
+        async allGroups(){
+            const promiseFirebase = await fetch('https://team-vue-9-comfeco-default-rtdb.firebaseio.com/grupos.json');
+            const data = await promiseFirebase.json();
+            if(data){
+                const grupos = data['grupo'];
+                this.groups = [];
+                for(const key in grupos) this.groups.push(grupos[key]);
+            }
+            
+        },
+        unirAlGrupo(index=null){
+            let updates = {};
+
+            if(index!==null){
+                if(!this.groups[index]["unido"] && !this.unido){
+                    updates[`grupos/grupo/${index}/unido`] = true;
+                    firebase.database().ref().update(updates, (error)=>{
+                        if(error){
+                            Swal.fire(
+                                '¡Error!',
+                                'Vaya algo salio mal &#128532',
+                                'error'
+                            );
+                        }else{
+                            this.techsDelGrupo.push(this.groups[index]["organizadores"]);
+                            console.log(this.techsDelGrupo);
+                            this.allGroups();
+                            this.unido = true;
+                            this.nombreGrupo = this.groups[index]["nombreGrupo"];
+                            localStorage.setItem("storageEvento", {
+                                'grupoUnido' : this.unido,
+                                'nombreGrupo' : this.nombreGrupo,
+                                'techsGrupoStore' : this.techsDelGrupo
+                            });
+                            Swal.fire(
+                                'Listo!',
+                                'Te has unido a este grupo &#128512',
+                                'success'
+                            );
+                        }
+                    });
+                }else{
+                    Swal.fire(
+                        'Listo!',
+                        'Ya te has unido a un grupo &#128512',
+                        'success'
+                    );
+                }
+            }else{
+                console.error("Error: Algo salio mal en firebase");
+                Swal.fire(
+                    '¡Error!',
+                    'Vaya algo salio mal :(',
+                    'error'
+                );
+            }
+        },
+        salirDelGrupo(index=null){
+            if(index!==null){
+                Swal.fire({
+                    title: 'Salir',
+                    text: "¿Esta seguro de que quieres abandonar el grupo?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    cancelButtonText : 'No',
+                    confirmButtonText: 'Si, salir'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let updates = {};
+                        updates[`grupos/grupo/${index}/unido`] = false;
+                        firebase.database().ref().update(updates, (error)=>{
+                            if(error){
+                                console.error("Error al actualizar");
+                                console.error(error);
+                                Swal.fire(
+                                    '¡Error!',
+                                    'Algo salio mal, intentalo mas tarde.',
+                                    'error'
+                                );
+                            }else{
+                                console.log("Exito al guardar");
+                                this.allGroups();
+                                this.unido = false;
+                                this.nombreGrupo = 'Aun no estas en ningun grupo';
+                                this.techsDelGrupo = [];
+                                localStorage.setItem("storageGrupo", {
+                                    'grupoUnido' : false,
+                                    'nombreGrupo' : 'Aun no estas en ningun grupo',
+                                    'techsGrupoStore' : []
+                                });
+                                Swal.fire(
+                                    'Listo',
+                                    'Abandonaste el grupo.',
+                                    'success'
+                                );
+                            }
+                        });
+                        
+                    }
+            });
+            }else{
+                 Swal.fire(
+                    '¡Error!',
+                    'Vaya algo salio mal :(',
+                    'error'
+                );
+            }
+        }
+    }
 }
 </script>
 

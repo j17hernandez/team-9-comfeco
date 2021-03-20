@@ -64,12 +64,13 @@
     </v-container><!--Main-->
 </template>
 <script>
+import firebase from 'firebase';
 import Profile from '@/components/user/profile.vue';
 import Maininfo from '@/components/user/maininfo.vue';
 import Eventsuser from '@/components/user/eventsuser.vue';
 import Insignia from '@/components/user/insignia/insignia.vue';
 import Group from '@/components/user/group/group.vue';
-import Eventsusertab from '@/components/user/eventsuserd/eventsuser.vue';
+import Eventsusertab from '@/components/user/eventsuserd/eventsuserd.vue';
 
 export default {
     layout : 'login',
@@ -80,6 +81,12 @@ export default {
         Insignia,
         Group,
         Eventsusertab,
+    },
+    created(){
+        this.testFireStore();
+    },
+    mounted(){
+        this.variablesGlobales();
     },
     data(){
         return{
@@ -126,6 +133,51 @@ export default {
             ]
         };
     },//Data
+    methods : {
+        testFireStore(){
+            const keyFire = {
+                apiKey: "AIzaSyCw9kRIAtojtsFII3NUgcuZMd7BQoQxCug",
+                appId: "1:288922534401:web:e4ebaa5664bc1396ae3600",
+                authDomain: "team-vue-9-comfeco.firebaseapp.com",
+                databaseURL: "https://team-vue-9-comfeco-default-rtdb.firebaseio.com",
+                measurementId: "G-DNBS9RPX82",
+                messagingSenderId: "288922534401",
+                projectId: "team-vue-9-comfeco",
+                storageBucket: "team-vue-9-comfeco.appspot.com",
+            };
+            // console.log('Firestore');
+            // console.log(firebase);
+            firebase.app();
+            // console.log('firestore app');
+            // console.log(firebase.firestore().app);
+            const db = firebase.firestore();
+            // console.log('DB Collection');
+            // console.log(db);
+            db.collection('usuarios')
+                .get()
+                .then(res=>{
+                    // res.forEach(obj=>{
+                    //     console.log(obj.data());
+                    // });
+                })
+                .catch(err=>{
+                    console.log('Error');
+                    console.log(err);
+                });
+
+
+        },
+        variablesGlobales(){
+            localStorage.setItem("storageGrupo", {
+                'grupoUnido' : false,
+                'nombreGrupo' : 'Aun no estas en ningun grupo',
+                'techsGrupoStore' : []
+            });
+            localStorage.setItem("eventoAgregadoLocal", {
+                title : ''
+            });
+        }
+    },
 }
 </script>
 <style scoped>
