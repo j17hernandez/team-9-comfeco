@@ -8,11 +8,10 @@
 Aqui se desarrollara y almacenara el proyecto para participar en el evento de Comfeco 2021, en este caso  desarrollar la plataforma para Comfeco 2022.
 
 ## Colaboradores
-* Antony Brenes (MilanDroid)
 * Jorge Luis Hernández (j17hernandez)
+* Javier Gonzalez (JavierGMo)
 * NOMBRE3 (NICK3)
 * NOMBRE4 (NICK4)
-* Javier Gonzalez (JavierGMo)
 
 ## Entorno de desarrollo
 
@@ -79,4 +78,7 @@ $ npm run start
 
 # Genera un proyecto estatico
 $ npm run generate
+
+# Desplegar cambios a hosting
+$ firebase deploy
 ```

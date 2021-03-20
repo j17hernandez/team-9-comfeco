@@ -25,6 +25,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~plugins/vee-validate.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -75,7 +76,8 @@ export default {
       themes: {
         light: {
           brand: '#69156A',
-          brandsecondary: '#dfab01'
+          brandsecondary: '#dfab01',
+          blue_react: '#00bcd4'
         },
         dark: {
           primary: colors.blue.darken2,

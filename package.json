@@ -15,7 +15,8 @@
     "core-js": "^3.8.3",
     "firebase": "^8.2.7",
     "nuxt": "^2.14.12",
-    "push-dir": "^0.4.1"
+    "sweetalert2": "^10.15.5",
+    "vee-validate": "^3.4.5"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3",
@@ -23,6 +24,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.6.3",
     "jest": "^26.6.3",
+    "sweetalert2": "^10.15.6",
     "vue-jest": "^3.0.4"
   }
 }
