@@ -96,7 +96,7 @@ export default {
             this.email,
             this.password
           ).then((user) => {
-            console.log(user)
+            // console.log(user)
             this.observador()
           }, (error) => {
             this.exist_error = true
@@ -122,7 +122,8 @@ export default {
       firebase.auth().onAuthStateChanged((user) => {
         if ( user && user.emailVerified === true) {
           this.isAuthenticated = true
-          this.$router.push('paginas/')
+          // console.log('Usuario', user)
+          // this.$router.push('paginas/')
           // var uid = user.uid
         } else {
           this.$router.push('/')

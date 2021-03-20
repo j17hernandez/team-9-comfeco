@@ -124,10 +124,6 @@ import Egghead from '@/assets/img/sponsors/Egghead.jpg'
 export default {
   layout: 'login',
   mixins: [basic],
-
-  mounted(){
-     this.allCourses();
-  },
   components: {
     Carrusel
   },

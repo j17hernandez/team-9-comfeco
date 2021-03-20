@@ -66,12 +66,8 @@
 
 <script>
 import basic from '@/mixins/basic'
-import Header from '@/layouts/header.vue'
 export default {
-  // mixins: [basic],
-  components: {
-    Header
-  },
+  mixins: [basic],
   data() {
     return {
       clipped: false,

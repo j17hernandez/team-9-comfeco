@@ -31,7 +31,7 @@
 <script>
 import Login from '@/components/login.vue'
 import Register from '@/components/register.vue'
-// import basic from '@/mixins/basic.js'
+import basic from '@/mixins/basic.js'
 export default {
   components: { Login, Register },
   // mixins: [basic],

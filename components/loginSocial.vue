@@ -64,6 +64,7 @@ export default {
               token: result.credential.accessToken,
               user: result.user,
             }
+            console.log('Response', result)
             localStorage.setItem('InfoUser', JSON.stringify(obj))
             this.observador()
           })
