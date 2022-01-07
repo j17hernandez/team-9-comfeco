@@ -7,7 +7,8 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "@nuxtjs/firebase": "^7.4.1",

@@ -1,23 +1,26 @@
 # Team-Vue-9-Comfeco
-*Repositorio para el equipo Vue #9, Comfeco 2021*
+
+_Repositorio para el equipo Vue #9, Comfeco 2021_
 
 <br/>
 
 ## Que es este proyecto?
 
-Aqui se desarrollara y almacenara el proyecto para participar en el evento de Comfeco 2021, en este caso  desarrollar la plataforma para Comfeco 2022.
+Aqui se desarrollara y almacenara el proyecto para participar en el evento de Comfeco 2021, en este caso desarrollar la plataforma para Comfeco 2022.
 
 ## Colaboradores
-* Jorge Luis Hernández (j17hernandez)
-* Javier Gonzalez (JavierGMo)
-* NOMBRE3 (NICK3)
-* NOMBRE4 (NICK4)
+
+- Jorge Luis Hernández (j17hernandez)
+- Javier Gonzalez (JavierGMo)
+- NOMBRE3 (NICK3)
+- NOMBRE4 (NICK4)
 
 ## Entorno de desarrollo
 
 Se recomienda al equipo utilizar VSCode junto con la Extension Vetur junto con Prettier.
 
 ## Tecnologias a utilizar
+
 - [Vue2](https://vuejs.org/)
 - [Nuxt.js](https://nuxtjs.org)
 - [Vuetify.js](https://vuetifyjs.com/)
@@ -78,6 +81,15 @@ $ npm run start
 
 # Genera un proyecto estatico
 $ npm run generate
+
+# Login with firebase
+$ firebase login
+
+# Login reauth with firebase
+$ firebase login --reauth
+
+# Iniciar firebase
+$ firebase init
 
 # Desplegar cambios a hosting
 $ firebase deploy
